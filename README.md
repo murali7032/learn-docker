@@ -32,7 +32,7 @@ This project uses **`ENTRYPOINT ["nginx", "-g", "daemon off;"]`** so the contain
 
 ### Users and port 80
 
-This `Dockerfile` ends with **`USER appuser`**. Binding to **port 80** on Linux usually requires **root** or **capabilities** (`cap_net_bind_service`). If nginx fails to start in a container, check logs: you may need to run nginx on **8080** inside the image, use **`USER root`** for the master process (common pattern: root then drop privileges inside nginx config), or use a rootless-friendly base. Treat this as a **learning knob**—adjust if bind errors appear.
+The container runs **nginx as root** (default user in this image) so it can **bind port 80** and write under **`/var/log/nginx`** and **`/var/lib/nginx`**. Running nginx as a **non-root** user without fixing ownership and cache paths causes **immediate exit** with permission errors in `docker logs`.
 
 ---
 
@@ -43,12 +43,6 @@ FROM docker.io/redhat/ubi9:latest
 ```
 
 **`FROM`** — base image; every Dockerfile starts here. UBI 9 is Red Hat’s universal base image (RHEL-compatible).
-
-```dockerfile
-RUN useradd appuser
-```
-
-**`RUN`** — executes at **build** time in a new layer. Here: create a non-root user.
 
 ```dockerfile
 RUN dnf install nginx -y
@@ -81,12 +75,6 @@ EXPOSE 80
 ```
 
 **`EXPOSE`** — documents that the app listens on 80 inside the container.
-
-```dockerfile
-USER appuser
-```
-
-**`USER`** — subsequent `RUN`/`CMD`/`ENTRYPOINT` run as this user (here: affects runtime when the container starts).
 
 ```dockerfile
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
@@ -189,7 +177,7 @@ docker rmi myfirstimage:v1
 
 1. **Default nginx page instead of `index.html`** — wrong path: use **`/usr/share/nginx/html`** for RHEL `nginx` package (this repo’s `Dockerfile` already does).
 2. **`nginx: invalid option: "-"`** — you ran `docker run myfirstimage:v1 --name x -p ...` (flags after image). Move **all** Docker flags **before** the image name.
-3. **Permission / bind errors on port 80** — review **`USER appuser`** vs nginx listening on 80; adjust user, port, or capabilities as needed.
+3. **Permission denied on `/var/log/nginx` or `/var/lib/nginx/tmp`** — nginx was running as a user without rights to those paths, or could not bind port 80; this lab image runs as **root** inside the container so nginx starts cleanly.
 
 ---
 
