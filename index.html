@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Learn Docker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background: #222;
+      color: #eee;
+      font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      background: #1c2833;
+      padding: 2rem 0;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.7rem;
+      letter-spacing: 2px;
+      color: #2496ed;
+      font-weight: 700;
+    }
+    header p {
+      color: #bbb;
+      font-size: 1.15rem;
+      margin-top: 1rem;
+      margin-bottom: 0;
+    }
+    .container {
+      flex: 1;
+      max-width: 850px;
+      margin: 2rem auto;
+      background: #222b36;
+      border-radius: 1rem;
+      padding: 2rem;
+      box-shadow: 0 8px 24px rgba(36,150,237,0.08);
+    }
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin-top: 2rem;
+      justify-content: center;
+    }
+    .card {
+      background: #27384a;
+      border-radius: 0.75rem;
+      box-shadow: 0 1px 8px rgba(36,150,237,0.04);
+      padding: 1.5rem 1.5rem 1rem 1.5rem;
+      max-width: 240px;
+      min-width: 200px;
+      transition: transform 0.13s;
+      cursor: pointer;
+    }
+    .card:hover {
+      transform: translateY(-6px) scale(1.03);
+      box-shadow: 0 4px 24px #2496ed44;
+    }
+    .card-title {
+      font-size: 1.17rem;
+      color: #2496ed;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      letter-spacing: 1px;
+    }
+    .card-desc {
+      font-size: 1rem;
+      color: #ced4da;
+      line-height: 1.5;
+    }
+    footer {
+      text-align: center;
+      color: #5e6e7d;
+      padding: 1.3rem 0;
+      background: #1c2833;
+      font-size: 1rem;
+      letter-spacing: 0.5px;
+    }
+    @media (max-width: 700px) {
+      .container {
+        padding: 1rem;
+      }
+      .cards {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Learn Docker</h1>
+    <p>
+      Your gateway to understanding containers, images, and the Docker ecosystem.<br>
+      Explore quick guides, learning tracks, and handy references below!
+    </p>
+  </header>
+
+  <div class="container">
+    <div class="cards">
+      <div class="card">
+        <div class="card-title">What is Docker?</div>
+        <div class="card-desc">
+          Learn about the basics of Docker, why it is popular, and how it changes software deployment.
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Installation Guide</div>
+        <div class="card-desc">
+          Step-by-step resources to help you install Docker on Windows, macOS, or Linux in minutes.
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Docker CLI Basics</div>
+        <div class="card-desc">
+          Master essential commands: building images, running containers, and managing your Docker workflow.
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Compose & Orchestration</div>
+        <div class="card-desc">
+          Learn to manage complex multi-container apps with Docker Compose and get introduced to orchestration!
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Build Your First Image</div>
+        <div class="card-desc">
+          Step through the process of writing a Dockerfile and creating your own custom container images.
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Best Practices</div>
+        <div class="card-desc">
+          Discover the do’s and don’ts of containerization, security basics, and tips for efficient Dockerfiles.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2024 Learn Docker &mdash; Powered by love for containers <span style="color:#2496ed;">&#9673;</span>
+  </footer>
+</body>
+</html>
